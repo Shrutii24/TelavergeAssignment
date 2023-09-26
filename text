@@ -1,0 +1,275 @@
+<div class="main">
+        <div class="from">
+            FROM
+        </div>
+        <div class="to">
+            TO
+        </div>
+        <div class="departure">
+            DEPARTURE
+        </div>
+        <div class="return">
+            RETURN
+        </div>
+        <div class="tc">
+            Travellers, Class
+        </div>
+       </div> 
+
+
+       .main {
+        background-color: #f4f4ec82;
+        height: 46vh;
+        width: 120vw;
+        margin: 16px auto;
+        display: flex;
+        justify-content: space-around;
+      }
+      
+      
+       .from {
+        background-color: rgb(242, 229, 229);
+          display: flex;
+          margin-left: -19vw;
+          height: 175px;
+          width: 23vw;
+          justify-content: space-around;
+      }
+      .to {
+        background-color: rgb(146, 220, 245);
+          display: flex;
+          margin-left: -15vw;
+          height: 175px;
+          width: 23vw;
+          justify-content: space-around;
+      }
+      .departure {
+        background-color: rgb(242, 229, 229);
+          display: flex;
+          margin-left: -10vw;
+          height: 175px;
+          width: 23vw;
+          justify-content: space-around;
+      }
+      .return {
+        background-color: rgb(146, 220, 245);
+          display: flex;
+          margin-left: -5vw;
+          height: 175px;
+          width: 23vw;
+          justify-content: space-around;
+      }
+      .tc {
+        background-color: rgb(242, 229, 229);
+          display: flex;
+          margin-left: 0vw;
+          height: 175px;
+          width: 23vw;
+          justify-content: space-around;
+      }
+
+      INSERT INTO `flight_details` (`Sl. no.`, `Source`, `Destination`, `Departure`, `Traveller_class`) VALUES ('1', 'Kokata', 'Bangalore', '2023-09-30', '1,Economy')
+
+
+      
+       (`Sl. no.`, `Source`, `Destination`, `Departure`, `Traveller_class`) VALUES ('2', 'Kokata', 'Bangalore', '2023-09-30', 'Economy');
+
+      <?php include("connection.php"); ?>
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Reservation</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+    <div>
+        <div class="navcontainer">
+            <nav>
+                <a class="active" href="#home">Home</a>
+                <a href="#contact">Contact</a>
+                <a href="#service">Services</a>
+                <a href="#about">Help</a>
+                <i class='bx bx-user-circle' style='color:#fbf9f9'></i>
+                <a href="#login" class="log">LogIn/SignUp </a>
+            </nav>
+        </div>
+        <div class="container">
+            <img src="Images\flight_background.jpg" alt="flight">
+            <div class="content">
+                <div class="trip">
+                    <input type="radio" name="triptype" value="1way"><label><b>One Way</b></label>
+                    <input type="radio" name="triptype" value="2way"><label><b>Round Trip</b></label>
+                    <input type="radio" name="triptype" value="explore"><label><b>Explore</b></label>
+                </div>
+                <form class="details">
+                    <form action="index.php" method="post"></form>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col" width="220px" height="50px">From</th>
+                                <th scope="col" width="220px">To</th>
+                                <th scope="col" width="240px">Departure</th>
+                                <th scope="col" width="200px">Return</th>
+                                <th scope="col" width="220px">Travellers,Class</th>
+                            </tr>
+                            <tr>
+                                <td><select name="from" id="from" required>
+                                        <option>Select source</option>
+                                        <option value="Kolkata">Kolkata</option>
+                                        <option value="Banglore">Banglore</option>
+                                        <option value="Delhi">Delhi</option>
+                                    </select></td>
+                                <td><select name="to" id="to" required>
+                                        <option>Select destination</option>
+                                        <option value="Kolkata">Kolkata</option>
+                                        <option value="Banglore">Banglore</option>
+                                        <option value="Delhi">Delhi</option>
+                                    </select></td>
+                                <td><input type="date" class="time" id="flightdt" name="flightdt"></td>
+                                <td>
+                                    <hr width="150px">
+                                </td>
+                                <td><input type="text" class="travel" placeholder="No. of Travellers">
+                                    <select class="trc" name="coach" id="coach" required>
+                                        <option>Select class</option>
+                                        <option value="Business">Business</option>
+                                        <option value="Economy">Economy</option>
+                                        <option value="First">First</option>
+                                    </select>
+                                </td>
+                            </tr>
+                        </thead>
+                    </table>
+                    <div>
+                         <a href="/search.php" target="_blank"> 
+                             <button type="submit" class="search"><b>Search</b></button>
+                    </div>
+            </div>
+            </form>
+        </div>
+    </div>
+
+    </div>
+</body>
+
+</html>
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $from = $_POST['from'];
+    $to = $_POST['to'];
+    $flighdt = $_POST['flighdt'];
+    $coach = $_POST['coach'];
+
+    $servername = "localhost";
+    $username = "root";
+    $passwowrd = "";
+    $dbname = "telaverge";
+    $con = mysqli_connect($servername, $username, $password, $dbname);
+
+if($con)
+{
+      echo "successfully connected";
+}
+else{
+    echo "connection failed".mysqli_connect_error();
+}
+$sql = "INSERT INTO `flight_details` (`Sl. no.`, `Source`, `Destination`, `Departure`, `Traveller_class`) VALUES ('$from', '$to', '$flightdt', '$coach')";
+$result = mysqli_query($con, $sql);
+if($result){
+    echo'submitted successfully';
+}
+else{
+    echo 'not inserted due to' . mysqli_error($con); 
+}
+}
+?> --> 
+
+
+<a href="/search.php" target="_blank">
+
+
+
+<?php
+    if (isset($_POST)) {
+    $From = $_POST['from'];
+    $To = $_POST['to'];
+    $Flighdt = $_POST['flighdt'];
+    $Travel = $_POST['travel'];
+    $Coach = $_POST['coach'];
+
+    if ($From != "" && $To != "" && $Flightdt != "" && $Travel != "" && $Coach != "" ) 
+    {
+
+        $sql = "INSERT INTO `telaverge`.`flight_details`(`Source`, `Destination`, `Departure`, `Traveller`,`Class`) VALUES ('$From', '$To', '$Flightdt','$Travel','$Coach');";
+    echo $sql;
+
+    if ($con->query($sql) == true) {
+        $insert = true;
+        echo "successfully inserted";
+    } else {
+        echo "ERROR: $sql <br> $con->error";
+    }
+    } 
+    else {
+        echo "Please fill the form correctly";
+    }
+
+    
+    $con->close();
+}
+?>
+
+
+
+<?php
+error_reporting(0);
+
+    $server = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "telaverge";
+    $con = mysqli_connect($server, $username, $password,$dbname);
+    if (!$con) {
+        die("Connection with the database failed due to" . mysqli_connect_error());
+    }
+    echo "Succcessfully connected";
+    ?>
+
+
+
+
+
+<?php
+
+
+if (isset($_POST)) {
+    $From = $_POST['from'];
+    $To = $_POST['to'];
+    $Flightdt = $_POST['flighdt'];
+    $Travel = $_POST['travel'];
+    $Coach = $_POST['coach'];
+
+    if ($From != "" && $To != "" && $Flightdt != "" && $Travel != "" && $Coach != "") {
+
+        $sql = "INSERT INTO `telaverge`.`flight_details`(`Source`, `Destination`, `Departure`, `Traveller`, `Class`) 
+                VALUES ('$From', '$To', '$Flightdt', '$Travel', '$Coach')";
+
+        if ($con->query($sql) === TRUE) {
+             $insert = true;
+            echo "Successfully inserted";
+        } else {
+            echo "Error: " . $sql . "<br>" . $con->error;
+        }
+    } else {
+        echo "Please fill the form correctly";
+    }
+
+    $con->close();
+}
+?>
